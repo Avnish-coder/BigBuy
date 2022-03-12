@@ -94,3 +94,12 @@ window.addEventListener("scroll", e => {
     gotoTop.classList.remove("show-top");
   }
 });
+
+
+const reloadtButton = document.querySelector("#pep_icon");
+
+function reload() {
+  reload = window.location.reload();
+}
+// Event listeners for reload
+reloadButton.addEventListener("click", reload, false);

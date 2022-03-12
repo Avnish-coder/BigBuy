@@ -2,12 +2,15 @@
 <html lang="en">
 <!-- Avnish Kumar Sharma , 00914807719, Maharaja Agrasen Institute of Technology,
 GGSIPU dddddddddddddd-->
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
   <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
 
@@ -25,8 +28,7 @@ GGSIPU dddddddddddddd-->
 </head>
 
 <body>
-  <a href="cart.html">click here</a>
-  <a href="product.html">click here</a>
+
   <!-- Header -->
   <header id="header" class="header">
     <div class="navigation">
@@ -39,7 +41,7 @@ GGSIPU dddddddddddddd-->
           </div>
 
           <div class="nav__logo">
-            <a href="/" class="scroll-link">
+            <a href="index.html" class="scroll-link" id="pep_icon">
               BIG BUY
             </a>
           </div>
@@ -64,24 +66,36 @@ GGSIPU dddddddddddddd-->
                 <a href="#news" class="nav__link scroll-link">Blog</a>
               </li>
               <li class="nav__item">
-                <a href="#contact" class="nav__link scroll-link">Contact</a>
+                <a href="#footer" class="nav__link scroll-link">Contact</a>
               </li>
             </ul>
           </div>
 
           <div class="nav__icons">
             <a href="/login.html" class="icon__item">
-              <svg class="icon__user" >
+              <svg class="icon__user">
                 <use xlink:href="./images/sprite.svg#icon-user"></use>
 
               </svg>
             </a>
 
-            <a href="#" class="icon__item">
+
+            <div id="search-form" class="nav__icons ">
+              <input type="text" placeholder="Search" class="search-Box" >
+
+            </div>
+
+
+            <!-- <a href="#" class="icon__item">
               <svg class="icon__search">
                 <use xlink:href="./images/sprite.svg#icon-search"></use>
               </svg>
             </a>
+             -->
+
+
+
+
 
             <a href="/cart.html" class="icon__item">
               <svg class="icon__cart">
@@ -706,7 +720,7 @@ GGSIPU dddddddddddddd-->
             <div class="section__titles category__titles ">
               <div class="section__title filter-btn active" data-id="All Products">
                 <span class="dot"></span>
-                <h1 class="primary__title">All Products</h1>
+                <h1 class="primary__title">All Products and Search Product</h1>
               </div>
             </div>
             <div class="section__titles">
@@ -1099,7 +1113,7 @@ GGSIPU dddddddddddddd-->
 
 
   <!-- Glide Carousel Script -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/glide.min.js"></script>
   <!-- Animate On Scroll -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 

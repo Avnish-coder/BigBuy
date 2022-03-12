@@ -9,6 +9,7 @@ const getProducts = async () => {
   }
 };
 
+
 /*
 =============
 Load Category Products
@@ -201,3 +202,99 @@ if (detail) {
     }
   });
 }
+
+
+
+// searching by typing starts
+
+const searchForm = document.querySelector("#search-form");
+const searchFormInput = searchForm.querySelector("input"); // <=> document.querySelector("#search-form input");
+
+searchFormInput.addEventListener("keypress", async function (e) {
+
+
+    searchProduct(e.target.value);
+  
+});
+
+async function searchProduct(input) {
+  let productSearching = await getProducts();
+    // console.log(productSearching);
+
+    let products = productSearching.filter(function (prd) {
+      return prd.title.toLowerCase() == input.toLowerCase();
+      
+    });
+    document.getElementById("category").scrollIntoView();
+    displayProductItems(products);
+}
+ 
+// The speech recognition interface lives on the browser’s window object
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; // if none exists -> undefined
+
+if(SpeechRecognition) {
+  console.log("Your Browser supports speech Recognition");
+  
+  const recognition = new SpeechRecognition();
+  recognition.continuous = true;
+  // recognition.lang = "en-US";
+
+  searchForm.insertAdjacentHTML("beforeend", ' <button type="button" class="icon__item icon__cart" ><i class="fa fa-microphone" aria-hidden="true" ></i></i></button>' );
+  searchFormInput.style.paddingRight = "50px";
+
+  const micBtn = searchForm.querySelector("button");
+  const micIcon = micBtn.firstElementChild;
+
+  micBtn.addEventListener("click", micBtnClick);
+  function micBtnClick() {
+    if(micIcon.classList.contains("fa-microphone")) { // Start Voice Recognition
+      recognition.start(); // First time you have to allow access to mic!
+    }
+    else {
+      recognition.stop();
+    }
+  }
+
+  recognition.addEventListener("start", startSpeechRecognition); // <=> recognition.onstart = function() {...}
+  function startSpeechRecognition() {
+    micIcon.classList.remove("fa-microphone");
+    micIcon.classList.add("fa-microphone-slash");
+    searchFormInput.focus();
+    console.log("Voice activated, SPEAK");
+  }
+
+  recognition.addEventListener("end", endSpeechRecognition); // <=> recognition.onend = function() {...}
+  function endSpeechRecognition() {
+    micIcon.classList.remove("fa-microphone-slash");
+    micIcon.classList.add("fa-microphone");
+    searchFormInput.focus();
+    console.log("Speech recognition service disconnected");
+  }
+
+  recognition.addEventListener("result", resultOfSpeechRecognition); // <=> recognition.onresult = function(event) {...} - Fires when you stop talking
+  function resultOfSpeechRecognition(event) {
+    const current = event.resultIndex;
+    const transcript = event.results[current][0].transcript;
+
+    searchFormInput.value = transcript;
+    // if(transcript != ""){
+    //   searchProduct(transcript);
+    // }else{
+    //   await getProducts();
+    // }
+    searchProduct(transcript);
+    
+      
+    console.log(transcript);
+  }
+  
+  
+}
+else {
+  console.log("Your Browser does not support speech Recognition");
+}
+
+
+// searching by typing end
+
+

@@ -10,7 +10,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Carousel -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.theme.min.css
@@ -36,7 +36,7 @@
           </div>
 
           <div class="nav__logo">
-            <a href="/" class="scroll-link">
+            <a href="index.html" class="scroll-link">
               BIG BUY
             </a>
           </div>
@@ -52,32 +52,32 @@
             </div>
             <ul class="nav__list">
               <li class="nav__item">
-                <a href="/" class="nav__link">Home</a>
+                <a href="#header" class="nav__link">Home</a>
               </li>
               <li class="nav__item">
-                <a href="#" class="nav__link">Products</a>
+                <a href="/" class="nav__link">Products</a>
               </li>
               <li class="nav__item">
-                <a href="#" class="nav__link">Blog</a>
+                <a href="#blog" class="nav__link">Blog</a>
               </li>
               <li class="nav__item">
-                <a href="#" class="nav__link">Contact</a>
+                <a href="#contact" class="nav__link">Contact</a>
               </li>
             </ul>
           </div>
 
           <div class="nav__icons">
-            <a href="#" class="icon__item">
+            <a href="/login.html" class="icon__item">
               <svg class="icon__user">
                 <use xlink:href="./images/sprite.svg#icon-user"></use>
               </svg>
             </a>
 
-            <a href="#" class="icon__item">
-              <svg class="icon__search">
-                <use xlink:href="./images/sprite.svg#icon-search"></use>
-              </svg>
-            </a>
+            <div id="search-form" class="nav__icons ">
+              <input type="text" placeholder="Search" class="search-Box" >
+
+            </div>
+            
 
             <a href="#" class="icon__item">
               <svg class="icon__cart">
