@@ -8,8 +8,6 @@ const getProducts = async () => {
     console.log(err);
   }
 };
-
-
 /*
 =============
 Load Category Products
@@ -203,6 +201,7 @@ if (detail) {
   });
 }
 
+// shop now button
 
 
 // searching by typing starts
@@ -212,24 +211,36 @@ const searchFormInput = searchForm.querySelector("input"); // <=> document.query
 
 searchFormInput.addEventListener("keypress", async function (e) {
 
-
     searchProduct(e.target.value);
   
 });
 
+
+
+
+
+
 async function searchProduct(input) {
   let productSearching = await getProducts();
     // console.log(productSearching);
+    if(input == ""){
+      const products = await getProducts();
+      displayProductItems(products);
+      return;
+    }
 
     let products = productSearching.filter(function (prd) {
+     
       return prd.title.toLowerCase() == input.toLowerCase();
       
     });
     document.getElementById("category").scrollIntoView();
-    displayProductItems(products);
+      displayProductItems(products);
 }
  
+
 // The speech recognition interface lives on the browser’s window object
+
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; // if none exists -> undefined
 
 if(SpeechRecognition) {
@@ -239,7 +250,7 @@ if(SpeechRecognition) {
   recognition.continuous = true;
   // recognition.lang = "en-US";
 
-  searchForm.insertAdjacentHTML("beforeend", ' <button type="button" class="icon__item icon__cart" ><i class="fa fa-microphone" aria-hidden="true" ></i></i></button>' );
+  searchForm.insertAdjacentHTML("beforeend", ' <button type="button" class="icon__item icon__cart" ><i class="fa fa-microphone" aria-hidden="true" style = "width : 17px" ></i></i></button>' );
   searchFormInput.style.paddingRight = "50px";
 
   const micBtn = searchForm.querySelector("button");
@@ -294,7 +305,68 @@ else {
   console.log("Your Browser does not support speech Recognition");
 }
 
-
 // searching by typing end
 
+
+// increase plus minus
+
+// const minus = document.querySelector(".minus-btn");
+// const plus = document.querySelector(".plus-btn");
+// const input = document.querySelector(".counter-btn");
+
+// minus.addEventListener("click",()=>{
+//   if(input.value > 1){
+//     input.value--;
+//   }
+// });
+// plus.addEventListener("click",()=>{
+//     input.value++;
+  
+// });
+
+
+// let productHtml = `<tr>
+// <td class="product__thumbnail">
+//     <a href="#">
+//         <img src="./images/products/iPhone/iphone4.jpeg" alt="">
+//     </a>
+// </td>
+// <td class="product__name">
+//     <a href="#">Apple iPhone 11</a>
+//     <br><br>
+//     <small>White/6.25</small>
+// </td>
+// <td class="product__price">
+//     <div class="price">
+//         <span class="new__price">$250.99</span>
+//     </div>
+// </td>
+// <td class="product__quantity">
+//     <div class="input-counter">
+//         <div>
+//             <span class="minus-btn">
+//                 <svg>
+//                     <use xlink:href="./images/sprite.svg#icon-minus"></use>
+//                 </svg>
+//             </span>
+//             <input type="text" min="1" value="1" max="10" class="counter-btn">
+//             <span class="plus-btn">
+//                 <svg>
+//                     <use xlink:href="./images/sprite.svg#icon-plus"></use>
+//                 </svg>
+//             </span>
+//         </div>
+//     </div>
+// </td>
+// <td class="product__subtotal">
+//     <div class="price">
+//         <span class="new__price">$250.99</span>
+//     </div>
+//     <a href="#" class="remove__cart-item">
+//         <svg>
+//             <use xlink:href="./images/sprite.svg#icon-trash"></use>
+//         </svg>
+//     </a>
+// </td>
+// </tr>`
 
