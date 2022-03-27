@@ -2274,10 +2274,11 @@ Cart Area
   display: block;
 }
 
-.product__thumbnail img {
-  width: 10rem;
+.product__thumbnail a img {
+  width: 10rem; 
   height: 15rem;
   object-fit: contain;
+  
 }
 
 .remove__cart-item svg {

@@ -18,6 +18,7 @@ const categoryCenter = document.querySelector(".category__center");
 window.addEventListener("DOMContentLoaded", async function () {
   const products = await getProducts();
   displayProductItems(products);
+  addCart();
 });
 
 const displayProductItems = items => {
@@ -49,7 +50,7 @@ const displayProductItems = items => {
                       <div class="product__price">
                         <h4>$${product.price}</h4>
                       </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
+                      <button type="submit" class="product__btn"  id = "${product.id}">Add To Cart</button>
                     </div>
                   <ul>
                       <li>
@@ -81,8 +82,11 @@ const displayProductItems = items => {
   displayProduct = displayProduct.join("");
   if (categoryCenter) {
     categoryCenter.innerHTML = displayProduct;
+
   }
 };
+
+
 
 /*
 =============
@@ -117,8 +121,10 @@ if (categoryContainer) {
 
       if (id === "All Products") {
         displayProductItems(products);
+        addCart();
       } else {
         displayProductItems(menuCategory);
+        addCart();
       }
     }
   });
@@ -207,6 +213,7 @@ if (detail) {
 // searching by typing starts
 
 const searchForm = document.querySelector("#search-form");
+// console.log(searchForm);
 const searchFormInput = searchForm.querySelector("input"); // <=> document.querySelector("#search-form input");
 
 searchFormInput.addEventListener("keypress", async function (e) {
@@ -226,6 +233,7 @@ async function searchProduct(input) {
     if(input == ""){
       const products = await getProducts();
       displayProductItems(products);
+      addCart();
       return;
     }
 
@@ -236,6 +244,7 @@ async function searchProduct(input) {
     });
     document.getElementById("category").scrollIntoView();
       displayProductItems(products);
+      addCart();
 }
  
 
@@ -310,63 +319,49 @@ else {
 
 // increase plus minus
 
-// const minus = document.querySelector(".minus-btn");
-// const plus = document.querySelector(".plus-btn");
-// const input = document.querySelector(".counter-btn");
+// adding functionality 
 
-// minus.addEventListener("click",()=>{
-//   if(input.value > 1){
-//     input.value--;
-//   }
-// });
-// plus.addEventListener("click",()=>{
-//     input.value++;
+
+// rendering products
+let productIds = new Set();
+
+
+
+function addCart() {
+
+let cartButton = document.querySelectorAll(".product__btn");
+// let tbody = document.querySelector(".table");
+
+let cartTotal = document.querySelector("#cart__total");
+// console.log(tbody);
+
+for(let i = 0 ; i <  cartButton.length; i++){
+
+  cartButton[i].addEventListener("click",function (e) {
+    
+    cartTotal.innerText = parseInt(cartTotal.innerText) + 1;
+    productIds.add(e.target.id);
+    // console.log(productIds);
+    let eArr = [];
+    productIds.forEach((val)=>{
+      eArr.push(val);
+
+    });
+
+    // console.log(JSON.stringify(productIds));
+    localStorage.setItem("productIds",JSON.stringify(eArr));
+
+  });
   
-// });
+
+}
 
 
-// let productHtml = `<tr>
-// <td class="product__thumbnail">
-//     <a href="#">
-//         <img src="./images/products/iPhone/iphone4.jpeg" alt="">
-//     </a>
-// </td>
-// <td class="product__name">
-//     <a href="#">Apple iPhone 11</a>
-//     <br><br>
-//     <small>White/6.25</small>
-// </td>
-// <td class="product__price">
-//     <div class="price">
-//         <span class="new__price">$250.99</span>
-//     </div>
-// </td>
-// <td class="product__quantity">
-//     <div class="input-counter">
-//         <div>
-//             <span class="minus-btn">
-//                 <svg>
-//                     <use xlink:href="./images/sprite.svg#icon-minus"></use>
-//                 </svg>
-//             </span>
-//             <input type="text" min="1" value="1" max="10" class="counter-btn">
-//             <span class="plus-btn">
-//                 <svg>
-//                     <use xlink:href="./images/sprite.svg#icon-plus"></use>
-//                 </svg>
-//             </span>
-//         </div>
-//     </div>
-// </td>
-// <td class="product__subtotal">
-//     <div class="price">
-//         <span class="new__price">$250.99</span>
-//     </div>
-//     <a href="#" class="remove__cart-item">
-//         <svg>
-//             <use xlink:href="./images/sprite.svg#icon-trash"></use>
-//         </svg>
-//     </a>
-// </td>
-// </tr>`
+
+
+  
+}
+
+
+
 
