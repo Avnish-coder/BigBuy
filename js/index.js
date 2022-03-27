@@ -3,6 +3,7 @@
 Navigation
 =============
  */
+
 const navOpen = document.querySelector(".nav__hamburger");
 const navClose = document.querySelector(".close__toggle");
 const menu = document.querySelector(".nav__menu");
@@ -98,8 +99,6 @@ window.addEventListener("scroll", e => {
 
 // const reloadtButton = document.querySelector("#pep_icon");
 
-// function reload() {
-//   reload = window.location.reload();
-// }
-// // Event listeners for reload
-// reloadButton.addEventListener("click", reload, false);
+// reloadtButton.addEventListener("click",function () {
+//   location.reload(); 
+// })

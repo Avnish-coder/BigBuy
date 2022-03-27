@@ -13,12 +13,15 @@ const getProducts = async () => {
 Load Category Products
 =============
  */
+
+let cartTotal = document.querySelector("#cart__total");
 const categoryCenter = document.querySelector(".category__center");
 
 window.addEventListener("DOMContentLoaded", async function () {
   const products = await getProducts();
   displayProductItems(products);
   addCart();
+  cartTotal.innerText = localStorage.getItem("Items");
 });
 
 const displayProductItems = items => {
@@ -223,10 +226,6 @@ searchFormInput.addEventListener("keypress", async function (e) {
 });
 
 
-
-
-
-
 async function searchProduct(input) {
   let productSearching = await getProducts();
     // console.log(productSearching);
@@ -330,16 +329,17 @@ let productIds = new Set();
 function addCart() {
 
 let cartButton = document.querySelectorAll(".product__btn");
-// let tbody = document.querySelector(".table");
 
-let cartTotal = document.querySelector("#cart__total");
+
 // console.log(tbody);
 
 for(let i = 0 ; i <  cartButton.length; i++){
 
   cartButton[i].addEventListener("click",function (e) {
+    let getItem = localStorage.getItem("Items") || 0;
+    getItem = parseInt(getItem);
+    cartTotal.innerText = getItem + 1;
     
-    cartTotal.innerText = parseInt(cartTotal.innerText) + 1;
     productIds.add(e.target.id);
     // console.log(productIds);
     let eArr = [];
@@ -350,15 +350,11 @@ for(let i = 0 ; i <  cartButton.length; i++){
 
     // console.log(JSON.stringify(productIds));
     localStorage.setItem("productIds",JSON.stringify(eArr));
+    localStorage.setItem("Items",getItem + 1);
 
   });
   
-
 }
-
-
-
-
   
 }
 
