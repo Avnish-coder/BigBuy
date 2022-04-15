@@ -1,12 +1,12 @@
 const express = require("express")
-const {listenLog,errorHandling, getHome} = require ("../controller/connect")
-
+const { listenLog, errorHandling, getHome } = require("../controller/connect")
+const { productModel } = require("../model/model")
 const mainRouter = express.Router();
 
 mainRouter
-.route("/")
-.get(getHome)
+    .route("/")
+    .get(getHome)
 
 module.exports = {
-              mainRouter
+    mainRouter
 }
