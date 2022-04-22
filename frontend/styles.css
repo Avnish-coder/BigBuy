@@ -1,4 +1,3 @@
-
 /*
 ======================
 Reset
@@ -166,16 +165,13 @@ Navigation
   height: 1.6rem;
 }
 
-.search-Box{
+.search-Box {
   /* height: 100%; */
- border-radius: 5px;
- border: 2px solid #ccc;
- padding-left: 10px;
- margin-right: 5px;
- 
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding-left: 10px;
+  margin-right: 5px;
 }
-
-
 
 .nav__icons .icon__item {
   display: flex;
@@ -845,7 +841,6 @@ span.dot::before {
   height: 25rem;
   padding: 0.5rem 0;
   text-align: center;
-  
 }
 
 .product__header img {
@@ -2276,10 +2271,9 @@ Cart Area
 }
 
 .product__thumbnail a img {
-  width: 10rem; 
+  width: 10rem;
   height: 15rem;
   object-fit: contain;
-  
 }
 
 .remove__cart-item svg {
@@ -2451,9 +2445,6 @@ Cart Area Media Query
     height: 1.5rem;
   }
 }
-
-
-
 
 /* search bar css */
 /* 

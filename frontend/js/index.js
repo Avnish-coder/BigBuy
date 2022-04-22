@@ -54,8 +54,8 @@ const navBar = document.querySelector(".navigation");
 const gotoTop = document.querySelector(".goto-top");
 
 // Smooth Scroll
-Array.from(scrollLink).map(link => {
-  link.addEventListener("click", e => {
+Array.from(scrollLink).map((link) => {
+  link.addEventListener("click", (e) => {
     // Prevent Default
     e.preventDefault();
 
@@ -80,7 +80,7 @@ Array.from(scrollLink).map(link => {
 
 // Fix NavBar
 
-window.addEventListener("scroll", e => {
+window.addEventListener("scroll", (e) => {
   const scrollHeight = window.pageYOffset;
   const navHeight = navBar.getBoundingClientRect().height;
   if (scrollHeight > navHeight) {
@@ -96,9 +96,8 @@ window.addEventListener("scroll", e => {
   }
 });
 
-
 // const reloadtButton = document.querySelector("#pep_icon");
 
 // reloadtButton.addEventListener("click",function () {
-//   location.reload(); 
+//   location.reload();
 // })

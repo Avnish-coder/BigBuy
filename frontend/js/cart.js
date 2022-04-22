@@ -79,7 +79,7 @@ async function getCartArray() {
   const results = await fetch("/getCart");
   const data = await results.json();
   const items = data.carts[0].productIds;
-//   console.log(items);
+  //   console.log(items);
   // cartTotal.innerText = localStorage.getItem("Items");
   return items;
 }
@@ -164,7 +164,7 @@ function addDIP() {
     let param = 0;
     for (let i = 0; i < aPrice.length; i++) {
       param += parseInt(aPrice[i].innerText.slice(1));
-    //   console.log(param);
+      //   console.log(param);
     }
     // subT(param);
     return param;
