@@ -16,7 +16,7 @@ function errorHandling(req, res) {
 
 function getHome(req, res) {
   // console.log("happy");
-  console.log(product.products);
+  // console.log(product.products);
   // createModel()
   res.sendFile(homePage);
 }

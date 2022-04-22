@@ -305,9 +305,6 @@ if (SpeechRecognition) {
 }
 
 
-
-
-
 async function getCartItem1 () {
     const results = await fetch("/getCart");
     const data = await results.json();
