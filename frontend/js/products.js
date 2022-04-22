@@ -57,7 +57,7 @@ const displayProductItems = (items) => {
                     </div>
                   <ul>
                       <li>
-                        <a data-tip="Quick View" data-place="left" href="#">
+                        <a data-tip="Quick View" class = "view" data-place="left" >
                           <svg>
                             <use xlink:href="./images/sprite.svg#icon-eye"></use>
                           </svg>
@@ -81,7 +81,7 @@ const displayProductItems = (items) => {
                   </div>
                   `
   );
-
+  addEven();
   displayProduct = displayProduct.join("");
   if (categoryCenter) {
     categoryCenter.innerHTML = displayProduct;
@@ -363,4 +363,18 @@ function addCart() {
       await setCartItems1(getItem + 1, eArr);
     });
   }
+}
+
+function addEven() {
+  let view1 = document.querySelectorAll("a[data-place='left']");
+  // let view = document.querySelectorAll(".view")
+
+  console.log(view1.length);
+  console.log(view1);
+
+  view1.forEach((val) => {
+    val.addEventListener("click", () => {
+      console.log(view1.length);
+    });
+  });
 }
