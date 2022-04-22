@@ -1,28 +1,60 @@
 const fs = require("fs");
 const product = require("../../../frontend/data/products.json");
-const { productModel } = require("../model/model");
+const { productModel, cart } = require("../model/model");
 let homePage =
-    "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/index2.html";
+  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/index2.html";
 
 function listenLog() {
-    console.log("server is running");
+  console.log("server is running");
 }
 
 function errorHandling(req, res) {
-    res.json({
-        message: "invalid command",
-    });
+  res.json({
+    message: "invalid command",
+  });
 }
 
 function getHome(req, res) {
-    createModel();
-    // console.log(product.products);
-    res.sendFile(homePage);
+  // console.log("happy");
+  console.log(product.products);
+  // createModel()
+  res.sendFile(homePage);
 }
 
-async function createModel() {
-    await productModel.deleteMany()
-    await productModel.create(product.products);
+async function getCart(req, res) {
+  let carts = await cart.find();
+  res.json({
+    carts: carts,
+  });
 }
 
-module.exports = { listenLog, errorHandling, getHome };
+async function postCart(req, res) {
+    console.log(req.body);
+  let carts = await cart.updateOne({"_id" : "62618514a0101f0bffe3d8f8"},req.body);
+  res.json({
+    carts: carts,
+  });
+}
+
+// (async function createModel() {
+//     // await productModel.deleteMany()
+//     // const productModels = new productModel(product.products)
+//     // await productModels.save();
+//     let awas = await productModel.create(product.products)
+// })();
+
+async function FetchData(req, res) {
+  let product = await productModel.find();
+  res.json({
+    products: product,
+  });
+}
+
+module.exports = {
+  listenLog,
+  errorHandling,
+  getHome,
+  FetchData,
+  getCart,
+  postCart,
+};

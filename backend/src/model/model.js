@@ -12,10 +12,10 @@ mongoose
     });
 
 const productSchema = mongoose.Schema({
-    pid: {
+    id: {
         type: Number,
         required: true,
-        unique: true,
+        // unique: true,
     },
     title: {
         type: String,
@@ -36,7 +36,26 @@ const productSchema = mongoose.Schema({
     },
 });
 
+
+const cartSchema = mongoose.Schema({
+    items :{
+        type : Number,
+        default : 0
+    },
+
+    productIds : {
+        type : Array,
+    }
+
+
+
+});
+
+
+
 const productModel = mongoose.model("productModel", productSchema);
+const cart = mongoose.model("cart", cartSchema);
 module.exports = {
-    productModel
+    productModel,
+    cart
 };
