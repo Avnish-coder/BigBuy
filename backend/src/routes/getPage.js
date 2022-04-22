@@ -1,5 +1,5 @@
 const express = require("express")
-const { getHome,FetchData,getCart,postCart } = require("../controller/connect")
+const { getHome,FetchData,getCart,postCart,getCartPage } = require("../controller/connect")
 const { productModel } = require("../model/model")
 const mainRouter = express.Router();
 
@@ -18,6 +18,11 @@ mainRouter
 mainRouter
     .route("/postCart")
     .post(postCart)
+
+mainRouter
+    .route("/pro")
+    .get(getCartPage)
+
 
 module.exports = {
     mainRouter

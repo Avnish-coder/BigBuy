@@ -4,6 +4,7 @@ const { productModel, cart } = require("../model/model");
 let homePage =
   "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/index2.html";
 
+let cartPage = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/product.html"
 function listenLog() {
   console.log("server is running");
 }
@@ -15,9 +16,6 @@ function errorHandling(req, res) {
 }
 
 function getHome(req, res) {
-  // console.log("happy");
-  // console.log(product.products);
-  // createModel()
   res.sendFile(homePage);
 }
 
@@ -34,6 +32,11 @@ async function postCart(req, res) {
   res.json({
     carts: carts,
   });
+}
+
+function getCartPage(req,res) {
+  res.sendFile(cartPage)
+  
 }
 
 // (async function createModel() {
@@ -57,4 +60,5 @@ module.exports = {
   FetchData,
   getCart,
   postCart,
+  getCartPage
 };
