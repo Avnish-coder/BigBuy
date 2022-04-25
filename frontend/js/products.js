@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", async function () {
   displayProductItems(products);
   addCart();
   subscribe();
-  checkout()
+  checkout();
   cartTotal.innerText = await getCartItem1();
 });
 
@@ -405,15 +405,10 @@ function subscribe() {
   }
 }
 
-
 function checkout() {
-  let buy = document.querySelector(".buy")
-  
+  let buy = document.querySelector(".buy");
 
-    buy.addEventListener("click",()=>{
-      location.pathname = "/gateway"
-    })
-  // })
+  buy.addEventListener("click", () => {
+    location.pathname = "/gateway";
+  });
 }
-
-
