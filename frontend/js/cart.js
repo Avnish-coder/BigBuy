@@ -1,5 +1,4 @@
 let tbody = document.querySelector("tbody");
-// let Ids = getCartArray();
 let Ids;
 let checkBox = document.querySelector(`input[type = "checkbox"]`);
 let shipping = document.querySelector(`.shipping`);
@@ -11,12 +10,6 @@ window.addEventListener("DOMContentLoaded", async function () {
   Ids = await getCartArray();
   products = await getProducts();
 
-  // const results = await fetch("/getCart");
-  // const data = await results.json();
-  // const items = data.carts[0].items;
-  // console.log(items);
-  // cartTotal.innerText = localStorage.getItem("Items");
-  // cartTotal.innerText = items
   await getCartItem();
   await displayCart(products);
   deleteCart();
@@ -27,8 +20,7 @@ async function getCartItem() {
   const results = await fetch("/getCart");
   const data = await results.json();
   const items = data.carts[0].items;
-  console.log(items);
-  // cartTotal.innerText = localStorage.getItem("Items");
+
   cartTotal.innerText = items;
 }
 
@@ -41,35 +33,23 @@ async function setCartItems(id, items) {
     },
     body: JSON.stringify({ items: items, productIds: id }),
   });
-
-  // cartTotal.innerText = localStorage.getItem("Items");
-  // cartTotal.innerText = items
 }
 
 function deleteCart() {
   let trashes = document.querySelectorAll(".trashCane");
   trashes.forEach((trash) => {
-    // console.log(sibling);
     trash.addEventListener("click", async (e) => {
-      //   let sibling = parseInt("-" + trash.previousElementSibling.innerText.slice(1));
-      //   console.log(sibling);
-
       let nIds = Ids.filter((val) => val != e.target.id);
       console.log(nIds);
       console.log(nIds.length);
       console.log("delete Cart");
 
-      //   localStorage.setItem("productIds", JSON.stringify(nIds));
-      //   //   subT(sibling);
-      //   localStorage.setItem("Items", nIds.length);
       await setCartItems(nIds, nIds.length);
       await displayCart();
-      //   console.log("1");
-      //   location.reload();
+
       deleteCart();
       addDIP();
-      // localStorage.setItem("Items",nIds.length );
-      //   cartTotal.innerText = localStorage.getItem("Items");
+
       await getCartItem();
     });
   });
@@ -79,15 +59,13 @@ async function getCartArray() {
   const results = await fetch("/getCart");
   const data = await results.json();
   const items = data.carts[0].productIds;
-  //   console.log(items);
-  // cartTotal.innerText = localStorage.getItem("Items");
+
   return items;
 }
 
 async function displayCart(items) {
   Ids = await getCartArray();
 
-  //   Ids = JSON.parse(localStorage.getItem("productIds"));
   let idsSet = new Set(Ids);
 
   let filterArr = products.filter((item) => {
@@ -130,9 +108,6 @@ async function displayCart(items) {
                                 </td>
                                 </tr>`;
   });
-
-  //   deleteCart();
-  //   addDIP();
 }
 
 function addDIP() {
@@ -148,14 +123,13 @@ function addDIP() {
         input[i].value--;
         aPrice[i].innerText = "$" + input[i].value * parseInt(currPrice);
         subT(getPrice());
-        // subT(parseInt(aPrice[i].innerText.slice(1)) - parseInt(currPrice) - parseInt(currPrice));
       }
     });
 
     plus[i].addEventListener("click", () => {
       input[i].value++;
       aPrice[i].innerText = "$" + input[i].value * parseInt(currPrice);
-      //   subT(parseInt(aPrice[i].innerText.slice(1)) - parseInt(currPrice));
+
       subT(getPrice());
     });
   }
@@ -164,9 +138,8 @@ function addDIP() {
     let param = 0;
     for (let i = 0; i < aPrice.length; i++) {
       param += parseInt(aPrice[i].innerText.slice(1));
-      //   console.log(param);
     }
-    // subT(param);
+
     return param;
   }
 

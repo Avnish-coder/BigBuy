@@ -21,14 +21,15 @@ window.addEventListener("DOMContentLoaded", async function () {
   const products = await getProducts();
   displayProductItems(products);
   addCart();
+  subscribe();
   cartTotal.innerText = await getCartItem1();
 });
 
 const displayProductItems = (items) => {
-  let displayProduct = []
-  for(let  i = 0; i < items.length; i++){
-      let product = items[i];
-      let temp = ` 
+  let displayProduct = [];
+  for (let i = 0; i < items.length; i++) {
+    let product = items[i];
+    let temp = ` 
       <div class="product category__products">
         <div class="product__header">
           <img src=${product.image} alt="product">
@@ -81,9 +82,8 @@ const displayProductItems = (items) => {
           </li>
       </ul>
       </div>
-      `
-      displayProduct.push(temp);
-      
+      `;
+    displayProduct.push(temp);
   }
   displayProduct = displayProduct.join("");
   if (categoryCenter) {
@@ -370,22 +370,39 @@ function addCart() {
 }
 
 function addEven() {
-  console.log(location);
-  
-  let view1 = document.querySelectorAll("a[data-place='left']");
-  // let view = document.querySelectorAll(".view")
-
-  console.log(view1.length);
-  console.log(view1);
-
+  let view1 = document.querySelectorAll("a[data-tip='Quick View']");
   view1.forEach((val) => {
     val.addEventListener("click", (e) => {
       // location.pathname = "/pro/" +e.target.id
-      location.pathname = "/pro"
-    // console.log(e.target.id);
+      location.pathname = "/pro";
       console.log(view1.length);
     });
   });
 }
 
+const profile = document.querySelectorAll(".icon__item");
 
+
+profile[0].addEventListener("mouseenter", () => {
+  console.log("avnish");
+  location.pathname = "/auth";
+});
+
+profile[2].addEventListener("mouseenter", () => {
+  location.pathname = "/cart";
+});
+
+function subscribe() {
+  const val = document.querySelectorAll("input[type='email']");
+  const subscribe = document.querySelectorAll(".newsletter__link") 
+
+  for(let i = 0; i < subscribe.length; i++){
+    subscribe[i].addEventListener("click", async()=>{
+     let res  = await axios.post("/subscribed",{email : val[i].value})
+     subscribe[i].innerText = "subscribed"
+    // console.log("happy");
+    })
+  }
+  
+  
+}

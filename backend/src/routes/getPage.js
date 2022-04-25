@@ -1,5 +1,5 @@
 const express = require("express")
-const { getHome,FetchData,getCart,postCart,getCartPage } = require("../controller/connect")
+const { getHome,FetchData,getCart,postCart,getCartPage,getAddCart,getLoginPage,subscribe } = require("../controller/connect")
 const { productModel } = require("../model/model")
 const mainRouter = express.Router();
 
@@ -24,8 +24,20 @@ mainRouter
     .get(getCartPage)
 
 mainRouter
-        .route("/pro/:id")
-        .get(getCartPage )
+    .route("/pro/:id")
+    .get(getCartPage )
+
+mainRouter
+    .route("/auth")
+    .get(getLoginPage)
+
+mainRouter
+    .route("/cart")
+    .get(getAddCart)
+
+mainRouter
+    .route("/subscribed")
+    .post(subscribe)
 
 
 module.exports = {
