@@ -46,15 +46,17 @@ const cartSchema = mongoose.Schema({
     productIds : {
         type : Array,
     }
-
-
-
 });
 
-
+const userSchema = mongoose.Schema({
+    
+})
 
 const productModel = mongoose.model("productModel", productSchema);
 const cart = mongoose.model("cart", cartSchema);
+
+
+
 module.exports = {
     productModel,
     cart

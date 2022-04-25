@@ -39,6 +39,7 @@ function getCartPage(req,res) {
   
 }
 
+
 // (async function createModel() {
 //     // await productModel.deleteMany()
 //     // const productModels = new productModel(product.products)

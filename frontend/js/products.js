@@ -380,9 +380,12 @@ function addEven() {
 
   view1.forEach((val) => {
     val.addEventListener("click", (e) => {
-      location.pathname = "/product/" +e.target.id
+      // location.pathname = "/pro/" +e.target.id
+      location.pathname = "/pro"
     // console.log(e.target.id);
       console.log(view1.length);
     });
   });
 }
+
+
