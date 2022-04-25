@@ -23,6 +23,10 @@ mainRouter
     .route("/pro")
     .get(getCartPage)
 
+mainRouter
+        .route("/product/:id")
+        .get(getHome)
+
 
 module.exports = {
     mainRouter

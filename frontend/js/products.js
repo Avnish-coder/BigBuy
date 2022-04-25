@@ -25,66 +25,70 @@ window.addEventListener("DOMContentLoaded", async function () {
 });
 
 const displayProductItems = (items) => {
-  let displayProduct = items.map(
-    (product) => ` 
-                  <div class="product category__products">
-                    <div class="product__header">
-                      <img src=${product.image} alt="product">
-                    </div>
-                    <div class="product__footer">
-                      <h3>${product.title}</h3>
-                      <div class="rating">
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
-                        </svg>
-                      </div>
-                      <div class="product__price">
-                        <h4>$${product.price}</h4>
-                      </div>
-                      <button type="submit" class="product__btn"  id = "${product.id}">Add To Cart</button>
-                    </div>
-                  <ul>
-                      <li>
-                        <a data-tip="Quick View" class = "view" data-place="left" >
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Compare" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-                          </svg>
-                        </a>
-                      </li>
-                  </ul>
-                  </div>
-                  `
-  );
-  addEven();
+  let displayProduct = []
+  for(let  i = 0; i < items.length; i++){
+      let product = items[i];
+      let temp = ` 
+      <div class="product category__products">
+        <div class="product__header">
+          <img src=${product.image} alt="product">
+        </div>
+        <div class="product__footer">
+          <h3>${product.title}</h3>
+          <div class="rating">
+            <svg>
+              <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+            </svg>
+            <svg>
+              <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+            </svg>
+            <svg>
+              <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+            </svg>
+            <svg>
+              <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+            </svg>
+            <svg>
+              <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
+            </svg>
+          </div>
+          <div class="product__price">
+            <h4>$${product.price}</h4>
+          </div>
+          <button type="submit" class="product__btn"  id = "${product.id}">Add To Cart</button>
+        </div>
+      <ul>
+          <li>
+            <a data-tip="Quick View" class = "view" id = "${product.id}" data-place="left" >
+              <svg>
+                <use xlink:href="./images/sprite.svg#icon-eye"></use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a data-tip="Add To Wishlist" data-place="left" href="#">
+              <svg>
+                <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a data-tip="Add To Compare" data-place="left" href="#">
+              <svg>
+                <use xlink:href="./images/sprite.svg#icon-loop2"></use>
+              </svg>
+            </a>
+          </li>
+      </ul>
+      </div>
+      `
+      displayProduct.push(temp);
+      
+  }
   displayProduct = displayProduct.join("");
   if (categoryCenter) {
     categoryCenter.innerHTML = displayProduct;
+    addEven();
   }
 };
 
@@ -366,6 +370,8 @@ function addCart() {
 }
 
 function addEven() {
+  console.log(location);
+  
   let view1 = document.querySelectorAll("a[data-place='left']");
   // let view = document.querySelectorAll(".view")
 
@@ -373,7 +379,9 @@ function addEven() {
   console.log(view1);
 
   view1.forEach((val) => {
-    val.addEventListener("click", () => {
+    val.addEventListener("click", (e) => {
+      location.pathname = "/product/" +e.target.id
+    // console.log(e.target.id);
       console.log(view1.length);
     });
   });
