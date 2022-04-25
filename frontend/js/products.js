@@ -22,6 +22,7 @@ window.addEventListener("DOMContentLoaded", async function () {
   displayProductItems(products);
   addCart();
   subscribe();
+  checkout()
   cartTotal.innerText = await getCartItem1();
 });
 
@@ -382,27 +383,37 @@ function addEven() {
 
 const profile = document.querySelectorAll(".icon__item");
 
-
-profile[0].addEventListener("mouseenter", () => {
-  console.log("avnish");
+profile[0].addEventListener("click", () => {
+  // console.log("avnish");
   location.pathname = "/auth";
 });
 
-profile[2].addEventListener("mouseenter", () => {
+profile[2].addEventListener("click", () => {
   location.pathname = "/cart";
 });
 
 function subscribe() {
   const val = document.querySelectorAll("input[type='email']");
-  const subscribe = document.querySelectorAll(".newsletter__link") 
+  const subscribe = document.querySelectorAll(".newsletter__link");
 
-  for(let i = 0; i < subscribe.length; i++){
-    subscribe[i].addEventListener("click", async()=>{
-     let res  = await axios.post("/subscribed",{email : val[i].value})
-     subscribe[i].innerText = "subscribed"
-    // console.log("happy");
-    })
+  for (let i = 0; i < subscribe.length; i++) {
+    subscribe[i].addEventListener("click", async () => {
+      let res = await axios.post("/subscribed", { email: val[i].value });
+      subscribe[i].innerText = "subscribed";
+      // console.log("happy");
+    });
   }
-  
-  
 }
+
+
+function checkout() {
+  let buy = document.querySelector(".buy")
+  
+
+    buy.addEventListener("click",()=>{
+      location.pathname = "/gateway"
+    })
+  // })
+}
+
+

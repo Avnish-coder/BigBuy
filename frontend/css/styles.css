@@ -21,6 +21,12 @@ Reset
   --blue: rgb(56, 10, 223);
 }
 
+
+.fa.fa-microphone{
+  color: black;
+  font-size: 15px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -153,11 +159,17 @@ Navigation
   color: var(--orange);
 }
 
+#search-form{
+  margin-right: 10px;
+}
+
 .nav__icons {
   display: flex;
   position: relative;
   /* background-color: red; */
   /* width: 330px; */
+  /* background-color: grey; */
+
 }
 
 .nav__icons .icon__item svg {
@@ -181,6 +193,7 @@ Navigation
   border: 1px solid var(--black);
   color: white;
   border-radius: 50%;
+  background-color: grey;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -1939,6 +1952,14 @@ Product Details
   margin-bottom: 1.6rem;
   padding-bottom: 1.6rem;
   border-bottom: 0.5px solid var(--primaryColor);
+}
+
+.bxt{
+  height: 50px;
+  width: 200px;
+  border-radius: 5px;
+  border: none;
+  
 }
 
 .rating {

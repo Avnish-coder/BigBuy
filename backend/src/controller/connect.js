@@ -1,14 +1,11 @@
 const { productModel, cart } = require("../model/model");
 const { sendMail } = require("./NodeMailer");
 
-let homePage =
-  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/index2.html";
-
-let cartPage =
-  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/product.html";
-let loginPage =
-  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/login.html";
-let addCart = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/cart.html";
+let homePage ="/Users/manishsharma/Desktop/Projects/BigBuy/frontend/index2.html";
+  let cartPage = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/product.html";
+  let gatewayPage = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/gateway.html";
+  let loginPage = "../../../frontend/login.html";
+  let addCart = "../../../frontend/cart.html";
 
 function listenLog() {
   console.log("server is running");
@@ -62,11 +59,16 @@ function getAddCart(req, res) {
 }
 
 function subscribe(req, res) {
-  let email = req.body.email
-  sendMail("subscribe",email)
+  let email = req.body.email;
+  sendMail("subscribe", email);
   res.json({
-    "happy" : "new year"
-  })
+    happy: "new year",
+  });
+}
+
+function gateway(req,res) {
+  res.sendFile(gatewayPage)
+  
 }
 
 module.exports = {
@@ -79,5 +81,6 @@ module.exports = {
   getCartPage,
   getLoginPage,
   getAddCart,
-  subscribe
+  subscribe,
+  gateway
 };
