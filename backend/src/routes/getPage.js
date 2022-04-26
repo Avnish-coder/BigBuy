@@ -1,7 +1,8 @@
 const express = require("express")
-const { getHome,FetchData,getCart,postCart,gateway,getCartPage,getAddCart,getLoginPage,subscribe } = require("../controller/connect")
+const { getHome,FetchData,getCart,postCart,gateway,price,getCartPage,getAddCart,getLoginPage,subscribe } = require("../controller/connect")
 const { productModel } = require("../model/model")
 const mainRouter = express.Router();
+
 
 mainRouter
     .route("/")
@@ -40,8 +41,13 @@ mainRouter
     .post(subscribe)
 
 mainRouter
+    .route("/cartProductPrice")
+    .get(price)
+
+mainRouter
     .route("/gateway")
     .get(gateway)
+
 
 
 module.exports = {

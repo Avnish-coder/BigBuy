@@ -147,17 +147,19 @@ function addDIP() {
 }
 
 function subT(price) {
-  totals[0].innerText = price;
-  totals[1].innerText = price;
+  totals[0].innerText = "$" + price;
+  totals[1].innerText = "$" + price;
 }
 
 checkBox.addEventListener("change", function () {
-  let totalprice = parseInt(totals[0].innerText);
+  let totalprice = parseInt(totals[0].innerText.slice(1));
   if (this.checked) {
-    totalprice = "$7";
+    // totalprice = 7;
     subT(totalprice + 7);
   } else {
     shipping.innerText = "$0";
     subT(totalprice - 7);
   }
 });
+
+

@@ -1,5 +1,6 @@
 const { productModel, cart } = require("../model/model");
 const { sendMail } = require("./NodeMailer");
+const {getInfo} = require("./stripe")
 
 let homePage ="/Users/manishsharma/Desktop/Projects/BigBuy/frontend/index2.html";
   let cartPage = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/product.html";
@@ -71,6 +72,14 @@ function gateway(req,res) {
   
 }
 
+async function price(req,res) {
+  let ans  = await getInfo()
+  res.json({
+    price: ans.price
+  })
+  
+}
+
 module.exports = {
   listenLog,
   errorHandling,
@@ -82,5 +91,6 @@ module.exports = {
   getLoginPage,
   getAddCart,
   subscribe,
-  gateway
+  gateway,
+  price
 };

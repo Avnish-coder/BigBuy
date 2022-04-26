@@ -68,7 +68,7 @@ const displayProductItems = (items) => {
             </a>
           </li>
           <li>
-            <a data-tip="Add To Wishlist" data-place="left" href="#">
+            <a data-tip="Add To Wishlist" data-place="left" >
               <svg>
                 <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
               </svg>
@@ -90,6 +90,7 @@ const displayProductItems = (items) => {
   if (categoryCenter) {
     categoryCenter.innerHTML = displayProduct;
     addEven();
+    clickFill();
   }
 };
 
@@ -319,8 +320,6 @@ async function getCartItem1() {
 }
 
 async function setCartItems1(id, items) {
-  console.log(id);
-  console.log(items);
   const results = await fetch("/postCart", {
     method: "POST",
     headers: {
@@ -329,9 +328,6 @@ async function setCartItems1(id, items) {
     },
     body: JSON.stringify({ items: id, productIds: items }),
   });
-
-  // cartTotal.innerText = localStorage.getItem("Items");
-  // cartTotal.innerText = items
 }
 
 // searching by typing end
@@ -406,9 +402,26 @@ function subscribe() {
 }
 
 function checkout() {
+  if (document.querySelector(".buy") == undefined) {
+    return;
+  }
   let buy = document.querySelector(".buy");
 
-  buy.addEventListener("click", () => {
+  buy.addEventListener("click", async () => {
     location.pathname = "/gateway";
+    // console.log("happy");
+  });
+}
+
+function clickFill() {
+  let heartArr = document.querySelectorAll("a[data-tip='Add To Wishlist']");
+  heartArr.forEach((val) => {
+    val.addEventListener("click", () => {
+      if (val.style.background == "var(--darkreader-bg--black)") {
+        val.style.background = "var(--darkreader-bg--orange)";
+      } else {
+        val.style.background = "var(--darkreader-bg--black)";
+      }
+    });
   });
 }
