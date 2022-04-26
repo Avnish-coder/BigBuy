@@ -20,6 +20,7 @@ module.exports.sendMail = async function sendMail(str,data) {
     subject: "Thanks from Big Buy",
     text: "Thank you for Subscribing our news letter",
     html: "<h3>Thank you for Subscribing our news letter of Big Buy</h3>",
+    
   });
 }
 

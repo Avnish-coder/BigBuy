@@ -2,6 +2,7 @@ const express = require("express")
 const { getHome,FetchData,getCart,postCart,gateway,price,getCartPage,getAddCart,getLoginPage,subscribe } = require("../controller/connect")
 const { productModel } = require("../model/model")
 const mainRouter = express.Router();
+const {stripePayment} = require("../controller/stripe")
 
 
 mainRouter
@@ -48,6 +49,9 @@ mainRouter
     .route("/gateway")
     .get(gateway)
 
+mainRouter
+    .route("/checkout")
+    .post(stripePayment)
 
 
 module.exports = {
