@@ -1,12 +1,16 @@
 const { productModel, cart } = require("../model/model");
 const { sendMail } = require("./NodeMailer");
-const {getInfo} = require("./stripe")
+const { getInfo } = require("./stripe");
 
-let homePage ="/Users/manishsharma/Desktop/Projects/BigBuy/frontend/index2.html";
-  let cartPage = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/product.html";
-  let gatewayPage = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/gateway.html";
-  let loginPage = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/login.html";
-  let addCart = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/cart.html";
+let homePage =
+  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/index2.html";
+let cartPage =
+  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/product.html";
+let gatewayPage =
+  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/gateway.html";
+let loginPage =
+  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/login.html";
+let addCart = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/cart.html";
 
 function listenLog() {
   console.log("server is running");
@@ -67,17 +71,15 @@ function subscribe(req, res) {
   });
 }
 
-function gateway(req,res) {
-  res.sendFile(gatewayPage)
-  
+function gateway(req, res) {
+  res.sendFile(gatewayPage);
 }
 
-async function price(req,res) {
-  let ans  = await getInfo()
+async function price(req, res) {
+  let ans = await getInfo();
   res.json({
-    price: ans.price
-  })
-  
+    price: ans.price,
+  });
 }
 
 module.exports = {
@@ -92,5 +94,5 @@ module.exports = {
   getAddCart,
   subscribe,
   gateway,
-  price
+  price,
 };
