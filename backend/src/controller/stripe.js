@@ -6,10 +6,10 @@ async function getInfo() {
   let product = await cart.find();
   let Ids = product[0].productIds;
   let arr = []
-  let obj = {};
-  let titles = "";
-  let prices = 0;
-  obj.quantity = Ids.length;
+  // let obj = {};
+  // let titles = "";
+  // let prices = 0;
+  // obj.quantity = Ids.length;
   for (let i = 0; i < Ids.length; i++) {
     let proModels = await productModel.find({ id: `${Ids[i]}` });
     arr.push(proModels[0])

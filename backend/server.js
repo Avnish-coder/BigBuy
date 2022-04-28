@@ -11,11 +11,9 @@ const port = process.env.PORT || 8080
 const server = express();
 server.listen(port, listenLog);
 server.use(express.json());
+server.use(helmet());
 server.use(cors());
 server.use(morgan());
-server.use(helmet({
-              contentSecurityPolicy: false,
-}));
 
 server.use(express.static("../frontend"));
 server.use("/", mainRouter);
