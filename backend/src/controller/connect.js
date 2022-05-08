@@ -1,16 +1,13 @@
 const { productModel, cart } = require("../model/model");
 const { sendMail } = require("./NodeMailer");
 const { getInfo } = require("./stripe");
+const path = require("path");
 
-let homePage =
-  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/index2.html";
-let cartPage =
-  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/product.html";
-let gatewayPage =
-  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/gateway.html";
-let loginPage =
-  "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/login.html";
-let addCart = "/Users/manishsharma/Desktop/Projects/BigBuy/frontend/cart.html";
+let cartPage = path.resolve("../frontend/product.ejs");
+let gatewayPage = path.resolve("../frontend/gateway.html");
+let loginPage = path.resolve("../frontend/login.html");
+let addCart = path.resolve("../frontend/cart.html");
+let homePage = path.resolve("../frontend/index2.html");
 
 function listenLog() {
   console.log("server is running");
@@ -44,8 +41,11 @@ async function postCart(req, res) {
   });
 }
 
-function getCartPage(req, res) {
-  res.sendFile(cartPage);
+async function getCartPage(req, res) {
+  let ans = await productModel.findOne(req.params)
+  let image =  (ans.image).slice(1)
+  ans.image = image
+  res.render(cartPage,{data:  ans});
 }
 
 function getLoginPage(req, res) {

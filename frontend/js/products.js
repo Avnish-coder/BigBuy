@@ -156,16 +156,19 @@ const picList = [pic1, pic2, pic3, pic4, pic5];
 // Active Picture
 let picActive = 1;
 
-["mouseover", "touchstart"].forEach((event) => {
+function howerIcons (){
+  ["mouseover", "touchstart"].forEach((event) => {
   if (picContainer) {
     picContainer.addEventListener(event, (e) => {
       const target = e.target.closest("img");
       if (!target) return;
       const id = target.id.slice(3);
-      changeImage(`./images/products/iPhone/iphone${id}.jpeg`, id);
+      changeImage(`/images/products/iPhone/iphone${id}.jpeg`, id);
     });
   }
-});
+})}
+
+howerIcons()
 
 // change active image
 const changeImage = (imgSrc, n) => {
@@ -370,9 +373,11 @@ function addEven() {
   let view1 = document.querySelectorAll("a[data-tip='Quick View']");
   view1.forEach((val) => {
     val.addEventListener("click", (e) => {
-      // location.pathname = "/pro/" +e.target.id
-      location.pathname = "/pro";
+      location.pathname = "/pro/" +  e.target.id
       console.log(view1.length);
+
+      // let res = await axios.post("/pro", { id: e.target.id })
+      
     });
   });
 }
@@ -401,18 +406,6 @@ function subscribe() {
   }
 }
 
-// function checkout() {
-//   if (document.querySelector(".buy") == undefined) {
-//     return;
-//   }
-//   let buy = document.querySelector(".buy");
-
-//   buy.addEventListener("click", async () => {
-//     location.pathname = "/gateway";
-//     // console.log("happy");
-//   });
-// }
-
 function checkout() {
   if (document.querySelector(".buy") == undefined) {
     return;
@@ -422,22 +415,22 @@ function checkout() {
   buy.addEventListener("click", async () => {
     console.log("happy");
     fetch("/checkout", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    }
-  })
-    .then(res => {
-      if (res.ok) return res.json()
-      return res.json().then(json => Promise.reject(json))
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-    .then(({ url }) => {
-      console.log(url);
-      window.location = url
-    })
-    .catch(e => {
-      console.error(e.error)
-    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return res.json().then((json) => Promise.reject(json));
+      })
+      .then(({ url }) => {
+        console.log(url);
+        window.location = url;
+      })
+      .catch((e) => {
+        console.error(e.error);
+      });
   });
 }
 
